@@ -1,25 +1,24 @@
 <template>
-  <v-bottom-navigation color="primary" shift app v-model="bottomNav" grow>
-    <v-btn to="wordList" value="wordList">
+  <v-bottom-navigation color="primary" shift app :input-value="login" grow>
+    <v-btn to="/wordList" value="wordList">
       <span>词单广场</span>
       <v-icon>mdi-book-multiple</v-icon>
     </v-btn>
-    <v-btn to="word" value="word">
+    <v-btn to="/word" value="word">
       <span>单词查询</span>
       <v-icon>mdi-book-search</v-icon>
     </v-btn>
-    <v-btn to="user" value="user">
+    <v-btn to="/user" value="user">
       <span>个人中心</span>
       <v-icon>mdi-account</v-icon>
     </v-btn>
   </v-bottom-navigation>
 </template>
 <script>
+import data from "../../data";
 export default {
   data() {
-    return {
-      bottomNav: "wordList"
-    };
+    return data.state;
   }
 };
 </script>

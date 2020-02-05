@@ -46,8 +46,10 @@ export default {
           password: this.user.password
         })
         .then(res => {
+          console.log(res);
           data.user.username = res.data.username;
-          this.$alert(res);
+          data.user.exp = res.data.exp;
+          data.user.myWordList = res.data.myWordList;
         });
     }
   }

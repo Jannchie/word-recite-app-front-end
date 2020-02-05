@@ -1,5 +1,5 @@
 <template>
-  <VSnackbar v-model="snackbar" top :color="color" style="z-index:10">
+  <VSnackbar v-model="display" top :color="color" style="z-index:10">
     {{ message }}
     <VBtn color="write" text @click.stop="display = false">
       close
@@ -13,14 +13,6 @@ export default {
     return data.alert;
   },
   computed: {
-    snackbar: {
-      get() {
-        return this.display;
-      },
-      set(val) {
-        this.display = val;
-      }
-    },
     color() {
       return this.type;
     }
