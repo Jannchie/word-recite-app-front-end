@@ -21,16 +21,26 @@ export default {
   data: () => ({ ...data }),
   mounted() {
     this.axios.get("/user/info").then(res => {
-      data.alert.message = `欢迎回来，${res.data.username} ~`;
+      data.alert.message = `欢迎回来，${res.data.username}~`;
       data.alert.display = true;
       data.alert.type = "green";
+      data.state.login = true;
+      if (res.data.myWordList == undefined) {
+        res.data.myWordList = [];
+      }
+      data.user = res.data;
     });
   },
-  methods: {}
+  computed: {
+    isGuest() {
+      console.log(this.login);
+      return !this.login;
+    }
+  }
 };
 </script>
 <style>
 .v-btn {
-  background: linear-gradient(60deg, #ffffff11, #ffffff44) !important;
+  background: linear-gradient(60deg, #ffffff44, #ffffff11) !important;
 }
 </style>

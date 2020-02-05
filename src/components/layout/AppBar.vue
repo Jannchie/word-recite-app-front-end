@@ -1,14 +1,16 @@
 <template>
-  <v-app-bar app>
-    <v-toolbar-title>Page title</v-toolbar-title>
+  <v-app-bar style="background-blend-mode: lighten;" dark color="primary" app>
+    <v-toolbar-title style="min-width:40px">{{ pageTitle }}</v-toolbar-title>
     <v-text-field
+      light
+      class="ml-4"
       solo
       v-model="searchText"
       dense
       rounded
       flat
       hide-details
-      label="搜索"
+      label="搜索（开发中）"
       prepend-inner-icon="mdi-magnify"
     />
   </v-app-bar>
@@ -23,6 +25,17 @@ export default {
     searchText() {
       console.log(this.searchText);
     }
+  },
+  computed: {
+    pageTitle() {
+      return this.$route.name;
+    }
   }
 };
 </script>
+
+<style>
+.v-app-bar .v-toolbar__content {
+  background: linear-gradient(60deg, #ffffff44, #ffffff11) !important;
+}
+</style>

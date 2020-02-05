@@ -7,7 +7,10 @@ export default {
     myWordList: []
   },
   searchText: "",
-  state: { login: false },
+  state: {
+    login: false,
+    needUpdateMyWordList: false
+  },
   wordList: [],
   alert: {
     message: undefined,
