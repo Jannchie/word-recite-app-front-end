@@ -2,14 +2,19 @@ export default {
   user: {
     username: undefined,
     password: undefined,
-    wordList: undefined
+    exp: undefined,
+    uid: undefined,
+    myWordList: []
   },
   searchText: "",
-  login: undefined,
+  state: { login: false },
   wordList: [],
   alert: {
     message: undefined,
     type: undefined,
     display: false
+  },
+  recite: {
+    words: []
   }
 };

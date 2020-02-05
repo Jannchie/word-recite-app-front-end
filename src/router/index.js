@@ -16,21 +16,21 @@ const routes = [
   },
   {
     path: "/user",
-    name: "用户中心",
+    name: "个人",
     component: () => import("../views/User.vue")
   },
   {
     path: "/wordlist",
-    name: "单词列表",
+    name: "词单",
     component: () => import("../views/WordList.vue")
   },
   {
     path: "/word",
-    name: "单词查询",
+    name: "查词",
     component: () => import("../views/Word.vue")
   },
   {
-    path: "/word/recite",
+    path: "/recite/:id",
     name: "单词背诵",
     component: () => import("../views/Recite.vue")
   }
