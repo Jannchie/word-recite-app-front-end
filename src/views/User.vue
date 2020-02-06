@@ -14,10 +14,10 @@
       <v-col>
         <w-card>
           <v-card-title>我的词单</v-card-title>
-          <v-card-subtitle :hidden="hasWordList">
+          <v-card-subtitle v-if="!hasWordList">
             您暂时没有词单哦~
           </v-card-subtitle>
-          <v-card-actions :hidden="hasWordList">
+          <v-card-actions v-if="!hasWordList">
             <v-btn
               to="/wordList"
               style="border-bottom-left-radius: 20px"

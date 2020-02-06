@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <w-card :hidden="isStart"
+    <w-card v-show="!isStart"
       ><v-card-title>
         背诵计划
       </v-card-title>
@@ -17,7 +17,7 @@
         >
       </v-card-actions>
     </w-card>
-    <w-card :hidden="!finish"
+    <w-card v-show="finish"
       ><v-card-title>
         本次背诵已完成！
       </v-card-title>
@@ -31,12 +31,12 @@
         >
       </v-card-actions>
     </w-card>
-    <w-card :hidden="!isStart || finish">
+    <w-card v-show="isStart && !finish">
       <v-card-subtitle> 还剩{{ recite.words.length }}个单词 </v-card-subtitle>
       <v-card-title>
         {{ currentWord.word }}
       </v-card-title>
-      <v-sheet v-if="viewDef">
+      <v-sheet :hidden="!viewDef">
         <v-card-text>
           {{ currentWord.definition }}
         </v-card-text>
@@ -44,14 +44,14 @@
           {{ currentWord.translation }}
         </v-card-text>
       </v-sheet>
-      <v-sheet v-else>
+      <v-sheet v-show="!viewDef">
         <v-card-actions>
           <v-btn @click.stop="switchViewDef()" block color="warning"
             ><v-icon left>mdi-card-text-outline</v-icon>查看释义</v-btn
           >
         </v-card-actions>
       </v-sheet>
-      <v-card-actions v-if="!pass">
+      <v-card-actions v-show="!pass">
         <v-row dense>
           <v-col>
             <v-btn
@@ -78,7 +78,7 @@
           </v-col>
         </v-row>
       </v-card-actions>
-      <v-card-actions v-else>
+      <v-card-actions v-show="pass">
         <v-row dense>
           <v-col>
             <v-btn
@@ -102,7 +102,7 @@ import data from "../data";
 export default {
   data() {
     return {
-      ...data,
+      recite: data.recite,
       isStart: false,
       currentWord: {},
       finish: false,
