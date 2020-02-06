@@ -14,10 +14,11 @@ axios.defaults.withCredentials = true;
 // 环境的切换
 if (process.env.NODE_ENV == "development") {
   axios.defaults.baseURL = "//localhost:8081/api";
+} else {
+  axios.defaults.baseURL = "//47.94.252.158/api";
 }
 
 Vue.prototype.$alert = function(res) {
-  console.log(res);
   let msg = res.data.msg;
   if (msg != undefined) {
     data.alert.message = res.data.msg;
