@@ -1,10 +1,10 @@
 <template>
-  <v-app-bar style="background-blend-mode: lighten;" dark color="primary" app>
+  <v-app-bar style="background-blend-mode: lighten;" app>
     <v-toolbar-title style="min-width:40px">{{ pageTitle }}</v-toolbar-title>
     <v-text-field
-      light
       class="ml-4"
       solo
+      outlined
       v-model="searchText"
       dense
       rounded
@@ -23,7 +23,7 @@ export default {
   },
   watch: {
     searchText() {
-      console.log(this.searchText);
+      // console.log(this.searchText);
     }
   },
   computed: {
@@ -36,6 +36,6 @@ export default {
 
 <style>
 .v-app-bar .v-toolbar__content {
-  background: linear-gradient(60deg, #ffffff44, #ffffff11) !important;
+  background: linear-gradient(60deg, #ffffff22, #ffffff11) !important;
 }
 </style>

@@ -11,14 +11,14 @@
               @click="add(eachWordList.lid)"
               style="border-bottom-left-radius: 20px"
               color="primary"
-              ><v-icon left>mdi-book-plus</v-icon>收藏</v-btn
+              ><v-icon left>mdi-book-plus</v-icon>开始背诵</v-btn
             >
             <v-btn
               v-else
               @click="del(eachWordList.lid)"
               style="border-bottom-left-radius: 20px"
               color="error"
-              ><v-icon left>mdi-calendar-check</v-icon>取关</v-btn
+              ><v-icon left>mdi-calendar-check</v-icon>暂停背诵</v-btn
             >
             <v-spacer key="spacer"></v-spacer>
             <v-chip
@@ -54,7 +54,6 @@ export default {
     return { ...data };
   },
   mounted() {
-    console.log(data);
     if (data.wordList.length == 0) {
       this.axios.get("/wordList").then(res => {
         res.data.forEach(e => {

@@ -17,24 +17,30 @@
         >
       </v-card-actions>
     </w-card>
-    <w-card v-show="finish"
-      ><v-card-title>
-        本次背诵已完成！
-      </v-card-title>
-      <v-card-actions>
-        <v-btn
-          @click="newTurn()"
-          block
-          color="primary"
-          style="border-bottom-left-radius: 20px; border-bottom-right-radius:  20px"
-          >再来一组</v-btn
-        >
-      </v-card-actions>
-    </w-card>
+    <v-slide-x-transition>
+      <w-card v-show="finish"
+        ><v-card-title>
+          本次背诵已完成！
+        </v-card-title>
+        <v-card-actions>
+          <v-btn
+            @click="newTurn()"
+            block
+            color="primary"
+            style="border-bottom-left-radius: 20px; border-bottom-right-radius:  20px"
+            >再来一组</v-btn
+          >
+        </v-card-actions>
+      </w-card>
+    </v-slide-x-transition>
+
     <w-card v-show="isStart && !finish">
       <v-card-subtitle> 还剩{{ recite.words.length }}个单词 </v-card-subtitle>
       <v-card-title>
         {{ currentWord.word }}
+        <v-btn @click.stop="playAudio()" icon>
+          <v-icon> mdi-volume-high </v-icon></v-btn
+        >
       </v-card-title>
       <v-sheet :hidden="!viewDef">
         <v-card-text>
@@ -46,7 +52,7 @@
       </v-sheet>
       <v-sheet v-show="!viewDef">
         <v-card-actions>
-          <v-btn @click.stop="switchViewDef()" block color="warning"
+          <v-btn text @click.stop="switchViewDef()" block color="warning"
             ><v-icon left>mdi-card-text-outline</v-icon>查看释义</v-btn
           >
         </v-card-actions>
@@ -62,10 +68,15 @@
               ><v-icon left>mdi-emoticon-dead</v-icon>我太难了</v-btn
             >
           </v-col>
-          <v-col>
-            <v-btn block color="primary" @click="setMastered(currentWord.id)">
-              <v-icon> mdi-check-bold</v-icon></v-btn
+          <v-col cols="3">
+            <v-btn
+              block
+              dark
+              color="primary"
+              @click="setMastered(currentWord.id)"
             >
+              <v-icon>mdi-check-bold</v-icon>
+            </v-btn>
           </v-col>
           <v-col>
             <v-btn
@@ -98,7 +109,6 @@
 </template>
 <script>
 import data from "../data";
-
 export default {
   data() {
     return {
@@ -107,7 +117,8 @@ export default {
       currentWord: {},
       finish: false,
       pass: false,
-      viewDef: false
+      viewDef: false,
+      audio: new Audio()
     };
   },
   mounted() {
@@ -116,6 +127,10 @@ export default {
     }
   },
   methods: {
+    playAudio() {
+      this.audio.src = `http://dict.youdao.com/dictvoice?type=0&audio=${this.currentWord.word}`;
+      this.audio.play();
+    },
     newTurn() {
       this.axios
         .get(`/user/wordList/notReciteWord?id=${this.$route.params.id}`)
@@ -128,6 +143,9 @@ export default {
     start() {
       this.isStart = true;
       this.currentWord = data.recite.words.pop();
+      if (data.settings.autoPlayAudio) {
+        this.playAudio();
+      }
     },
     setNeutral(id) {
       this.axios.post(`/user/word/${id}/recite`);
@@ -157,6 +175,7 @@ export default {
       } else {
         this.currentWord = data.recite.words.pop();
         data.state.needUpdateMyWordList = true;
+        this.playAudio();
       }
     }
   }

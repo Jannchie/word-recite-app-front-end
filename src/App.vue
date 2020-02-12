@@ -1,6 +1,6 @@
 <template>
-  <v-app
-    ><LayoutAppBar></LayoutAppBar>
+  <v-app>
+    <LayoutAppBar v-if="state.login == true"></LayoutAppBar>
     <v-content>
       <w-notification></w-notification>
       <router-view></router-view>
@@ -15,10 +15,10 @@ import LayoutAppBar from "./components/layout/AppBar";
 import data from "./data";
 export default {
   name: "App",
-
   components: { LayoutBottomNav, LayoutAppBar },
-
-  data: () => ({ ...data }),
+  data() {
+    return { state: data.state };
+  },
   mounted() {
     this.axios.get("/user/info").then(res => {
       data.alert.message = `欢迎回来，${res.data.username}~`;
@@ -28,12 +28,37 @@ export default {
       if (res.data.myWordList == undefined) {
         res.data.myWordList = [];
       }
+      if (["/", "/login", "/sign"].indexOf(this.$route.path) != -1) {
+        this.$router.push(`/user`);
+      }
       data.user = res.data;
+      window.localStorage.setItem("dark", data.settings.dark);
     });
   },
+  methods: {
+    updateSettings() {
+      this.axios.post(`/user/settings`, data.settings);
+    }
+  },
+  watch: {
+    "settings.dark"(val) {
+      this.$vuetify.theme.dark = val;
+      data.settings.dark = val;
+      window.localStorage.setItem("dark", data.settings.dark);
+      this.updateSettings();
+    },
+    "settings.autoPlayAudio"(val) {
+      data.settings.autoPlayAudio = val;
+      this.updateSettings();
+    },
+    "settings.wordsOfRound"(val) {
+      data.settings.wordsOfRound = val;
+      this.updateSettings();
+    }
+  },
+
   computed: {
     isGuest() {
-      console.log(this.login);
       return !this.login;
     }
   }

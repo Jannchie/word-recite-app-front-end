@@ -57,6 +57,7 @@ export default {
           data.user.username = res.data.username;
           data.user.exp = res.data.exp;
           data.user.myWordList = res.data.myWordList;
+          this.$router.push(`/user`);
         });
     }
   }

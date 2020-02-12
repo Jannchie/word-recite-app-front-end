@@ -8,6 +8,10 @@
       <span>个人中心</span>
       <v-icon>mdi-account</v-icon>
     </v-btn>
+    <v-btn to="/settings" value="settings">
+      <span>设置</span>
+      <v-icon>mdi-settings</v-icon>
+    </v-btn>
     <!-- <v-btn to="/word" value="word">
       <span>单词查询</span>
       <v-icon>mdi-book-search</v-icon>
@@ -27,5 +31,6 @@ export default {
   height: inherit;
   min-width: 80px;
   padding: inherit;
+  background: #00000000 !important;
 }
 </style>

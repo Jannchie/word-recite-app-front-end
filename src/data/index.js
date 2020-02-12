@@ -8,7 +8,7 @@ export default {
   },
   searchText: "",
   state: {
-    login: false,
+    login: undefined,
     needUpdateMyWordList: false
   },
   wordList: [],
@@ -19,5 +19,10 @@ export default {
   },
   recite: {
     words: []
+  },
+  settings: {
+    dark: false,
+    autoPlayAudio: true,
+    wordsOfRound: 20
   }
 };

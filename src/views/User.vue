@@ -52,7 +52,10 @@
                         class="grey--text subheading"
                         v-if="eachIdx[1] == '已掌握'"
                         >({{
-                          (each.info.mastered / each.info.count).toFixed(2)
+                          (
+                            (each.info.mastered / each.info.count) *
+                            100
+                          ).toFixed(2)
                         }}%)</span
                       >
                     </v-col>

@@ -35,7 +35,10 @@ Vue.prototype.$alert = function(res) {
 
 axios.interceptors.response.use(
   function(response) {
-    Vue.prototype.$alert(response);
+    let path = router.app.$route.path;
+    if (["/recite", "/wordList"].indexOf(path) != -1) {
+      Vue.prototype.$alert(response);
+    }
     return response;
   },
   function(error) {
