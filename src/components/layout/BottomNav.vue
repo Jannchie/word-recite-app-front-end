@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation color="primary" shift app :input-value="login" grow>
+  <v-bottom-navigation color="primary" shift app v-if="state.login" grow>
     <v-btn to="/wordList" value="wordList">
       <span>词单广场</span>
       <v-icon>mdi-book-multiple</v-icon>
@@ -22,7 +22,7 @@
 import data from "../../data";
 export default {
   data() {
-    return data.state;
+    return { state: data.state };
   }
 };
 </script>

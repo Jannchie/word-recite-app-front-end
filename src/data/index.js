@@ -1,7 +1,7 @@
 export default {
   user: {
-    username: undefined,
-    password: undefined,
+    username: "",
+    password: "",
     exp: undefined,
     uid: undefined,
     myWordList: []

@@ -58,11 +58,9 @@
                 <v-list-item-title>
                   <v-autocomplete
                     no-data-text="超出范围"
-                    :v-model="settings.wordsOfRound"
-                    :value="settings.wordsOfRound"
+                    v-model="settings.wordsOfRound"
                     :items="wordsOfRoundItems"
-                    >{{ settings.wordsOfRound }}</v-autocomplete
-                  >
+                  ></v-autocomplete>
                 </v-list-item-title>
               </v-list-item>
             </v-list-item-content>

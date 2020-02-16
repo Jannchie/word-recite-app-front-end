@@ -43,6 +43,11 @@ const routes = [
     path: "/recite/:id",
     name: "单词背诵",
     component: () => import("../views/Recite.vue")
+  },
+  {
+    path: "*",
+    name: "404",
+    component: () => import("../views/Welcome.vue")
   }
 ];
 
@@ -56,11 +61,11 @@ router.afterEach(() => {
   if (undefined == data.state.login && router.app.$route.path != "/") {
     router.push("/");
   }
+
   if (
     false == data.state.login &&
-    router.app.$route.path != "/" &&
-    router.app.$route.path != "/sign" &&
-    router.app.$route.path != "/login"
+    router.app.$route.path != "/login" &&
+    router.app.$route.path != "/sign"
   ) {
     router.push("/sign");
   }

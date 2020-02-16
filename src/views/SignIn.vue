@@ -3,10 +3,10 @@
     <v-row>
       <v-col>
         <w-card>
-          <v-card-title>欢迎使用见齐单词</v-card-title>
-          <v-card-subtitle>Welcome to Jannchie words</v-card-subtitle>
+          <v-card-title>欢迎使用单词馅饼</v-card-title>
+          <v-card-subtitle>Welcome to word cake</v-card-subtitle>
           <v-card-text
-            >见齐单词是一个单词记忆APP。在开始使用之前，你需要注册一个账号来开始你的背诵之旅。
+            >单词馅饼是一个单词记忆APP。在开始使用之前，你需要注册一个账号来开始你的背诵之旅。
             <v-form v-model="valid">
               <v-text-field
                 v-model="username"

@@ -26,63 +26,67 @@
             >
           </v-card-actions>
           <v-divider></v-divider>
-          <v-list-item v-for="(each, index) in user.myWordList" :key="index">
-            <v-list-item-content>
-              <v-list-item-title>{{ each.name }}</v-list-item-title>
-              <v-row dense>
-                <v-col
-                  v-for="eachIdx in [
-                    [each.info.count, '总数', 'primary'],
-                    [each.info.mastered, '已掌握', 'success'],
-                    [each.info.reciting, '背诵中', 'warning']
-                  ]"
-                  :key="eachIdx[0]"
-                  :cols="4"
-                >
+          <v-slide-y-transition mode="out-in" group>
+            <v-list-item v-for="(each, index) in user.myWordList" :key="index">
+              <v-list-item-content>
+                <v-list-item-title>{{ each.name }}</v-list-item-title>
+                <v-row dense>
+                  <v-col
+                    v-for="eachIdx in [
+                      [each.info.count, '总数', 'primary'],
+                      [each.info.mastered, '已掌握', 'success'],
+                      [each.info.reciting, '背诵中', 'warning']
+                    ]"
+                    :key="eachIdx[0]"
+                    :cols="4"
+                  >
+                    <v-row dense>
+                      <v-col
+                        :class="`${eachIdx[2]}--text caption font-weight-black`"
+                        :cols="12"
+                      >
+                        {{ eachIdx[1] }}
+                      </v-col>
+                      <v-col :cols="12">
+                        {{ eachIdx[0] }}
+                        <span
+                          class="grey--text subheading"
+                          v-if="eachIdx[1] == '已掌握'"
+                          >({{
+                            (
+                              (each.info.mastered / each.info.count) *
+                              100
+                            ).toFixed(2)
+                          }}%)</span
+                        >
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
+                <v-card-actions style="padding: 0px">
                   <v-row dense>
-                    <v-col
-                      :class="`${eachIdx[2]}--text caption font-weight-black`"
-                      :cols="12"
-                    >
-                      {{ eachIdx[1] }}
+                    <v-col>
+                      <v-btn block color="primary" :to="`/recite/${each.lid}`"
+                        ><v-icon left>mdi-book-plus-multiple</v-icon>学习</v-btn
+                      >
                     </v-col>
-                    <v-col :cols="12">
-                      {{ eachIdx[0] }}
-                      <span
-                        class="grey--text subheading"
-                        v-if="eachIdx[1] == '已掌握'"
-                        >({{
-                          (
-                            (each.info.mastered / each.info.count) *
-                            100
-                          ).toFixed(2)
-                        }}%)</span
+                    <v-col>
+                      <v-btn block color="success"
+                        ><v-icon left>mdi-book-search-outline</v-icon
+                        >查看</v-btn
+                      >
+                    </v-col>
+                    <v-col>
+                      <v-btn block color="warning" :to="`/review/${each.lid}`"
+                        ><v-icon left>mdi-book-minus-multiple</v-icon
+                        >复习</v-btn
                       >
                     </v-col>
                   </v-row>
-                </v-col>
-              </v-row>
-              <v-card-actions style="padding: 0px">
-                <v-row dense>
-                  <v-col>
-                    <v-btn block color="primary" :to="`/recite/${each.lid}`"
-                      ><v-icon left>mdi-book-plus-multiple</v-icon>学习</v-btn
-                    >
-                  </v-col>
-                  <v-col>
-                    <v-btn block color="success"
-                      ><v-icon left>mdi-book-search-outline</v-icon>查看</v-btn
-                    >
-                  </v-col>
-                  <v-col>
-                    <v-btn block color="warning"
-                      ><v-icon left>mdi-book-minus-multiple</v-icon>复习</v-btn
-                    >
-                  </v-col>
-                </v-row>
-              </v-card-actions>
-            </v-list-item-content>
-          </v-list-item>
+                </v-card-actions>
+              </v-list-item-content>
+            </v-list-item>
+          </v-slide-y-transition>
         </w-card>
       </v-col>
     </v-row>

@@ -1,0 +1,11 @@
+<template>
+  <w-card>
+    <v-list>
+      <v-list-item>
+        <v-list-item-content>
+          123
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </w-card>
+</template>

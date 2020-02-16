@@ -33,9 +33,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.v-app-bar .v-toolbar__content {
-  background: linear-gradient(60deg, #ffffff22, #ffffff11) !important;
-}
-</style>
