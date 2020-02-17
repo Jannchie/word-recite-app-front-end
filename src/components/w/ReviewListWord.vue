@@ -2,15 +2,28 @@
   <v-lazy min-height="50px">
     <v-list-item @click.stop="showReciteRecordDetail()">
       <v-list-item-content>
-        <v-list-item-title>{{ reciteRecord.word.word }}</v-list-item-title>
+        <v-list-item-title :class="`${this.wordColor}--text`">{{
+          reciteRecord.word.word
+        }}</v-list-item-title>
       </v-list-item-content>
       <v-list-item-action>
         <v-flex>
-          <v-btn @click.stop="setPass" :color="successColor" icon
-            ><v-icon>mdi-check-circle-outline</v-icon></v-btn
+          <v-btn
+            v-if="$route.params.type == 'review'"
+            @click.stop="setMastered"
+            :color="primaryColor"
+            icon
+            ><v-icon>mdi-check-bold</v-icon></v-btn
+          >
+          <v-btn
+            v-if="$route.params.type == 'review'"
+            @click.stop="setPass"
+            :color="successColor"
+            icon
+            ><v-icon>mdi-emoticon-cool-outline</v-icon></v-btn
           >
           <v-btn @click.stop="setFail" :color="errorColor" icon
-            ><v-icon>mdi-close-circle-outline</v-icon></v-btn
+            ><v-icon>mdi-emoticon-dead-outline</v-icon></v-btn
           >
         </v-flex>
       </v-list-item-action>
@@ -18,7 +31,7 @@
         <w-card
           style="border-bottom-right-radius: 0px;border-bottom-left-radius: 0px"
         >
-          <v-card-title>
+          <v-card-title :class="`${this.wordColor}--text`">
             {{ reciteRecord.word.word }}
           </v-card-title>
           <v-card-text>
@@ -68,31 +81,51 @@ export default {
       this.showDetail = true;
     },
     setPass() {
-      this.state = true;
+      this.state = 1;
       this.axios.post(`/user/word/${this.reciteRecord.word.id}/recite`);
     },
     setFail() {
-      this.state = false;
+      this.state = 0;
       this.axios.post(`/user/word/${this.reciteRecord.word.id}/forget`);
+    },
+    setMastered() {
+      this.state = 2;
+      this.axios.post(`/user/word/${this.reciteRecord.word.id}/master`);
     }
   },
   props: { reciteRecord: Object },
   computed: {
+    wordColor() {
+      switch (this.state) {
+        case 2:
+          return "primary";
+        case 1:
+          return "success";
+        case 0:
+          return "error";
+        default:
+          return undefined;
+      }
+    },
     successColor() {
       switch (this.state) {
-        case true:
+        case 1:
           return "success";
-        case false:
+        default:
           return undefined;
+      }
+    },
+    primaryColor() {
+      switch (this.state) {
+        case 2:
+          return "primary";
         default:
           return undefined;
       }
     },
     errorColor() {
       switch (this.state) {
-        case true:
-          return undefined;
-        case false:
+        case 0:
           return "error";
         default:
           return undefined;

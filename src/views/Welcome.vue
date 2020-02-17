@@ -13,7 +13,7 @@
 <script>
 export default {};
 </script>
-<style scoped>
+<style >
 .center-content {
   display: flex;
   align-items: center;

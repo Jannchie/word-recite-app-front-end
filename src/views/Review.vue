@@ -1,25 +1,29 @@
 <template>
-  <div>
-    <w-card>
-      <v-card-title>
-        {{ listName }}
-      </v-card-title>
-      <v-card-subtitle> {{ listSubName }} </v-card-subtitle>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <w-card>
+          <v-card-title>
+            {{ listName }}
+          </v-card-title>
+          <v-card-subtitle> {{ listSubName }} </v-card-subtitle>
 
-      <v-list dense rounded>
-        <w-review-list-word
-          v-for="(reciteRecord, i) in reciteRecords"
-          :reciteRecord="reciteRecord"
-          :key="i"
-        >
-        </w-review-list-word>
-        <v-skeleton-loader
-          v-intersect="onIntersect"
-          type="list-item@2"
-        ></v-skeleton-loader>
-      </v-list>
-    </w-card>
-  </div>
+          <v-list dense rounded>
+            <w-review-list-word
+              v-for="(reciteRecord, i) in reciteRecords"
+              :reciteRecord="reciteRecord"
+              :key="i"
+            >
+            </w-review-list-word>
+            <v-skeleton-loader
+              v-intersect="onIntersect"
+              type="list-item@2"
+            ></v-skeleton-loader>
+          </v-list>
+        </w-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 import data from "../data";
@@ -34,7 +38,6 @@ export default {
   computed: {
     listName() {
       let name;
-      console.log(data.user);
       data.user.myWordList.forEach(wordList => {
         if (this.$route.params.id == wordList.lid) {
           name = wordList.name;
@@ -44,7 +47,7 @@ export default {
       return name;
     },
     listSubName() {
-      return this.$route.params.type == "recite"
+      return this.$route.params.type == "review"
         ? "未完全掌握的单词"
         : "已完全掌握的单词";
     }

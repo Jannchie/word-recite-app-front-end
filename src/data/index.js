@@ -6,7 +6,11 @@ export default {
     uid: undefined,
     myWordList: []
   },
-  searchText: "",
+  search: {
+    searchText: "",
+    searching: false,
+    items: []
+  },
   state: {
     login: undefined,
     needUpdateMyWordList: false

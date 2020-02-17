@@ -1,16 +1,20 @@
 <template>
   <v-container>
-    <w-card v-show="!isStart" key="start"
+    <v-skeleton-loader
+      v-if="recite.words.length == 0"
+      type="card"
+    ></v-skeleton-loader>
+    <w-card v-show="!isStart && recite.words.length != 0" key="start"
       ><v-card-title>
         背诵计划
       </v-card-title>
 
       <v-card-subtitle v-if="settings.wordsOfRound == -1">
-        本次背诵了{{ count }}个单词
+        本次已经背了{{ count }}个单词
       </v-card-subtitle>
 
       <v-card-subtitle v-else>
-        本次还剩{{ recite.words.length }}个单词
+        根据计划，本次还剩{{ recite.words.length }}个单词
       </v-card-subtitle>
 
       <v-card-actions>
@@ -39,7 +43,9 @@
     </w-card>
     <v-fade-transition>
       <w-card v-show="isStart && !finish" key="progress" class="recite-card">
-        <v-card-subtitle v-if="settings.wordsOfRound == -1">
+        <v-card-subtitle
+          v-if="settings.wordsOfRound == -1 && recite.words.length != 0"
+        >
           本次背诵了{{ count }}个单词
         </v-card-subtitle>
 

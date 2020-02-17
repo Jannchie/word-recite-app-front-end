@@ -60,7 +60,7 @@
                             (
                               (each.info.mastered / each.info.count) *
                               100
-                            ).toFixed(2)
+                            ).toFixed(1)
                           }}%)</span
                         >
                       </v-col>

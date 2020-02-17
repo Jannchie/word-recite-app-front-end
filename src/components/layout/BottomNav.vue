@@ -1,5 +1,12 @@
 <template>
-  <v-bottom-navigation color="primary" shift app v-if="state.login" grow>
+  <v-bottom-navigation
+    style="z-index: 1"
+    color="primary"
+    shift
+    app
+    v-if="state.login"
+    grow
+  >
     <v-btn to="/wordList" value="wordList">
       <span>词单广场</span>
       <v-icon>mdi-book-multiple</v-icon>

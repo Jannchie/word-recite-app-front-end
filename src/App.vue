@@ -3,6 +3,7 @@
     <LayoutAppBar v-if="state.login === true"></LayoutAppBar>
     <v-content>
       <w-notification></w-notification>
+      <w-search-card></w-search-card>
       <v-slide-y-transition mode="out-in">
         <router-view></router-view>
       </v-slide-y-transition>
@@ -35,8 +36,6 @@ export default {
           res.data.myWordList = [];
         }
         data.user = res.data;
-        console.log(res.data.settings);
-
         Object.keys(res.data.settings).forEach(e => {
           this.settings[e] = res.data.settings[e];
         });
@@ -83,5 +82,8 @@ export default {
 <style>
 .v-btn {
   background: linear-gradient(60deg, #ffffff22, #ffffff11) !important;
+}
+.theme--dark .v-btn {
+  background: #00000000 !important;
 }
 </style>
