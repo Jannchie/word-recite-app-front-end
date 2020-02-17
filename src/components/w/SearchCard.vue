@@ -8,9 +8,13 @@
     >
       <v-card-title>搜索</v-card-title>
       <v-list>
-        <v-list-item v-for="(item, i) in search.items" :key="i">
+        <w-review-list-word
+          v-for="(item, i) in search.items"
+          :key="i"
+          :reciteRecord="item"
+        >
           {{ item }}
-        </v-list-item>
+        </w-review-list-word>
       </v-list>
     </v-card>
   </v-fab-transition>

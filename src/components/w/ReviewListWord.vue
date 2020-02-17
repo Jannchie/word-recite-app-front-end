@@ -9,14 +9,14 @@
       <v-list-item-action>
         <v-flex>
           <v-btn
-            v-if="$route.params.type == 'review'"
+            v-if="$route.params.type != 'mastered'"
             @click.stop="setMastered"
             :color="primaryColor"
             icon
             ><v-icon>mdi-check-bold</v-icon></v-btn
           >
           <v-btn
-            v-if="$route.params.type == 'review'"
+            v-if="$route.params.type != 'mastered'"
             @click.stop="setPass"
             :color="successColor"
             icon

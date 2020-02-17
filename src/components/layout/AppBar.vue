@@ -44,7 +44,6 @@ export default {
     doSearch() {
       data.search.searching = true;
       document.getElementById("search-field").focus();
-      console.log("searching..");
     },
     hiddenSearch() {
       if (this.search.searching) {
