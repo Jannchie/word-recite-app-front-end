@@ -53,14 +53,14 @@
           >
         </v-card-title>
         <v-fade-transition hide-on-leave mode="in-out">
-          <v-sheet key="def" v-show="viewDef">
-            <v-card-text>
+          <v-card-text key="def" v-show="viewDef" style="white-space: pre-line">
+            <p>
               {{ currentWord.definition }}
-            </v-card-text>
-            <v-card-text>
+            </p>
+            <p>
               {{ currentWord.translation }}
-            </v-card-text>
-          </v-sheet>
+            </p>
+          </v-card-text>
         </v-fade-transition>
         <v-fade-transition mode="out-in">
           <v-sheet key="act" v-show="!viewDef">

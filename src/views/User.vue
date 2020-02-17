@@ -6,7 +6,11 @@
           <v-card-title>
             {{ user.username }}
           </v-card-title>
-          <v-card-subtitle>EXP: {{ user.exp }}</v-card-subtitle>
+          <v-card-subtitle
+            >EXP. {{ user.exp }} <br />
+            LEVEL.
+            {{ ((user.exp / 100) ** 0.5).toFixed(2).replace(".", " (") + "%)" }}
+          </v-card-subtitle>
         </w-card>
       </v-col>
     </v-row>
@@ -71,13 +75,19 @@
                       >
                     </v-col>
                     <v-col>
-                      <v-btn block color="success"
+                      <v-btn
+                        block
+                        color="success"
+                        :to="`/wordlist/${each.lid}/mastered`"
                         ><v-icon left>mdi-book-search-outline</v-icon
                         >查看</v-btn
                       >
                     </v-col>
                     <v-col>
-                      <v-btn block color="warning" :to="`/review/${each.lid}`"
+                      <v-btn
+                        block
+                        color="warning"
+                        :to="`/wordlist/${each.lid}/review`"
                         ><v-icon left>mdi-book-minus-multiple</v-icon
                         >复习</v-btn
                       >

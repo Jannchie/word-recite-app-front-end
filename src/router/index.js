@@ -41,8 +41,13 @@ const routes = [
   },
   {
     path: "/recite/:id",
-    name: "单词背诵",
+    name: "背诵",
     component: () => import("../views/Recite.vue")
+  },
+  {
+    path: "/wordlist/:id/:type",
+    name: "复习",
+    component: () => import("../views/Review.vue")
   },
   {
     path: "*",
